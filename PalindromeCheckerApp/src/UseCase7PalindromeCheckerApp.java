@@ -1,9 +1,8 @@
 import java.util.Scanner;
-import java.util.Stack;
-import java.util.Queue;
-import java.util.LinkedList;
+import java.util.Deque;
+import java.util.ArrayDeque;
 
-public class UseCase6PalindromeCheckerApp {
+public class UseCase7PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
@@ -17,27 +16,24 @@ public class UseCase6PalindromeCheckerApp {
         System.out.print("Enter a word to check: ");
         String originalWord = scanner.nextLine();
 
-        // --- UC6: Queue + Stack Based Palindrome Check ---
+        // --- UC7: Deque-Based Optimized Palindrome Check ---
 
-        // 1. Initialize Stack and Queue
-        Stack<Character> stack = new Stack<>();
-        Queue<Character> queue = new LinkedList<>();
+        // 1. Initialize the Deque
+        Deque<Character> deque = new ArrayDeque<>();
 
-        // 2. Push (Stack) and Enqueue (Queue) Operations
+        // 2. Insert characters into deque
         for (int i = 0; i < originalWord.length(); i++) {
-            char c = originalWord.charAt(i);
-            stack.push(c); // Stack: Last In, First Out
-            queue.add(c);  // Queue: First In, First Out
+            deque.addLast(originalWord.charAt(i)); // Adds to the rear
         }
 
-        // 3. Compare pop (Stack) vs dequeue (Queue)
+        // 3. Remove first & last, and compare until empty (or 1 char left)
         boolean isPalindrome = true;
 
-        while (!stack.isEmpty() && !queue.isEmpty()) {
-            char stackPop = stack.pop();     // Retrieves characters in REVERSE order
-            char queueDequeue = queue.remove(); // Retrieves characters in ORIGINAL order
+        while (deque.size() > 1) {
+            char first = deque.removeFirst(); // Removes from the front
+            char last = deque.removeLast();   // Removes from the rear
 
-            if (stackPop != queueDequeue) {
+            if (first != last) {
                 isPalindrome = false; // Mismatch found!
                 break;
             }
