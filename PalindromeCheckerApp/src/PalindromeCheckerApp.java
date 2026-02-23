@@ -10,23 +10,34 @@ public class PalindromeCheckerApp {
         System.out.println("  Version: 1.0                           ");
         System.out.println("=========================================");
 
-        // --- UC3: Palindrome Check Using String Reverse ---
+        // Setup Scanner for user input
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter a word to check: ");
         String originalWord = scanner.nextLine();
 
-        String reversedWord = "";
+        // --- UC4: Character Array Based Palindrome Check ---
 
-        // 1. Loop (for loop) & 2. String Concatenation (+)
-        for (int i = originalWord.length() - 1; i >= 0; i--) {
-            reversedWord += originalWord.charAt(i);
+        // 1. Convert string to char[]
+        char[] charArray = originalWord.toCharArray();
+
+        // 2. Two-Pointer Technique Setup
+        int left = 0; // Starts at the first character
+        int right = charArray.length - 1; // Starts at the last character
+        boolean isPalindrome = true; // Assume it is true until proven otherwise
+
+        // 3. Compare start & end characters moving inward
+        while (left < right) {
+            if (charArray[left] != charArray[right]) {
+                isPalindrome = false; // Mismatch found!
+                break; // Exit the loop immediately to save time
+            }
+            left++;  // Move left pointer forward
+            right--; // Move right pointer backward
         }
 
-        // 3. equals() Method
-        System.out.println("\nOriginal: " + originalWord);
-        System.out.println("Reversed: " + reversedWord);
-
-        if (originalWord.equals(reversedWord)) {
+        // Output the result
+        System.out.println("\nChecking word: " + originalWord);
+        if (isPalindrome) {
             System.out.println("Result: Yes, it is a palindrome!");
         } else {
             System.out.println("Result: No, it is not a palindrome.");
