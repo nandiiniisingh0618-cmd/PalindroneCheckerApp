@@ -1,36 +1,37 @@
-// 1. Class
+import java.util.Scanner;
+
 public class PalindromeCheckerApp {
 
-    // 2. Main Method & 3. Static Keyword
     public static void main(String[] args) {
 
-        // 4. Console Output
+        // --- UC1: Welcome Message ---
         System.out.println("=========================================");
         System.out.println("  Welcome to the PalindromeChecker App!  ");
         System.out.println("  Version: 1.0                           ");
         System.out.println("=========================================");
 
-        // 5. Application Flow Control
-        // The program will either prompt the user for input here (UC2)
-        // or exit if there are no further instructions.
-        // 1. String & String Literal
-        String originalWord = "madam";
+        // --- UC3: Palindrome Check Using String Reverse ---
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a word to check: ");
+        String originalWord = scanner.nextLine();
+
         String reversedWord = "";
 
-        // 2. Data Structure: String Manipulation
-        // We loop through the original word backwards to build the reversed version
+        // 1. Loop (for loop) & 2. String Concatenation (+)
         for (int i = originalWord.length() - 1; i >= 0; i--) {
             reversedWord += originalWord.charAt(i);
         }
 
-        // 3. Conditional Statement (if-else) & Console Output
-        System.out.println("\nChecking word: " + originalWord);
+        // 3. equals() Method
+        System.out.println("\nOriginal: " + originalWord);
+        System.out.println("Reversed: " + reversedWord);
 
         if (originalWord.equals(reversedWord)) {
             System.out.println("Result: Yes, it is a palindrome!");
         } else {
             System.out.println("Result: No, it is not a palindrome.");
         }
+
+        scanner.close();
     }
 }
-
