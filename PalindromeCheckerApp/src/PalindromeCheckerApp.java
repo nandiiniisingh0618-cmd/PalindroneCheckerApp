@@ -1,6 +1,7 @@
 import java.util.Scanner;
+import java.util.Stack; // We must import the Stack class
 
-public class PalindromeCheckerApp {
+public class UseCase5PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
@@ -10,29 +11,32 @@ public class PalindromeCheckerApp {
         System.out.println("  Version: 1.0                           ");
         System.out.println("=========================================");
 
-        // Setup Scanner for user input
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter a word to check: ");
         String originalWord = scanner.nextLine();
 
-        // --- UC4: Character Array Based Palindrome Check ---
+        // --- UC5: Stack-Based Palindrome Check ---
 
-        // 1. Convert string to char[]
-        char[] charArray = originalWord.toCharArray();
+        // 1. Initialize the Stack Data Structure
+        Stack<Character> stack = new Stack<>();
 
-        // 2. Two-Pointer Technique Setup
-        int left = 0; // Starts at the first character
-        int right = charArray.length - 1; // Starts at the last character
-        boolean isPalindrome = true; // Assume it is true until proven otherwise
+        // 2. Push Operation: Load characters into the stack
+        for (int i = 0; i < originalWord.length(); i++) {
+            stack.push(originalWord.charAt(i));
+        }
 
-        // 3. Compare start & end characters moving inward
-        while (left < right) {
-            if (charArray[left] != charArray[right]) {
-                isPalindrome = false; // Mismatch found!
-                break; // Exit the loop immediately to save time
+        // 3. Pop Operation & Reversal Logic
+        boolean isPalindrome = true;
+
+        for (int i = 0; i < originalWord.length(); i++) {
+            // stack.pop() automatically gives us the characters in reverse order
+            char poppedChar = stack.pop();
+
+            // Compare the original word's character with the popped character
+            if (originalWord.charAt(i) != poppedChar) {
+                isPalindrome = false; // Mismatch found
+                break; // Exit early
             }
-            left++;  // Move left pointer forward
-            right--; // Move right pointer backward
         }
 
         // Output the result
