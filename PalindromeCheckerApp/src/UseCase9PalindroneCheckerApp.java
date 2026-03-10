@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class UseCase9PalindromeCheckerApp {
+public class UseCase9PalindroneCheckerApp {
 
     public static void main(String[] args) {
 
