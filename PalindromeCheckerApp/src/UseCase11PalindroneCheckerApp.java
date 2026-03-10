@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class UseCase11PalindromeCheckerApp {
+public class UseCase11PalindroneCheckerApp {
 
     // --- The Service Class (Business Logic) ---
     // By making this a 'static class' inside our main class, we keep everything in one file!
